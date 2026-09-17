@@ -12,6 +12,16 @@ const justPressed = {};
 
 const CONTROL_CODES = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'Space'];
 
+window.addEventListener('keydown', (e) => {
+  if (CONTROL_CODES.includes(e.code)) e.preventDefault();
+  if (!keys[e.code]) justPressed[e.code] = true;
+  keys[e.code] = true;
+});
+
+window.addEventListener('keyup', (e) => {
+  keys[e.code] = false;
+});
+
 function pressed(code) {
   const val = justPressed[code];
   justPressed[code] = false;
